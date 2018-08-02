@@ -6,8 +6,10 @@
 
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { TabNavigator } from 'react-navigation'; // Version can be specified in package.json
-import CommunityTabRouter from './Community/CommunityTabRouter'
+import { TabNavigator, createMaterialTopTabNavigator } from 'react-navigation'; // Version can be specified in package.json
+import CommunityMembersView from './Community/CommunityMembersView';
+import GroupsView from './Community/GroupsView';
+import MyGroupsView from './Community/MyGroupsView';
 type Props = {};
 class App extends Component<Props> {
   render() {
@@ -18,6 +20,14 @@ class App extends Component<Props> {
     );
   }
 }
+
+const CommunityTabRouter = createMaterialTopTabNavigator(
+  {
+    Members: { screen: CommunityMembersView },
+    Groups: { screen: GroupsView },
+    'My Groups': { screen: MyGroupsView }
+  }
+);
 
 export default TabNavigator({
   Home: { screen: App },
